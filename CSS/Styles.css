@@ -1,6 +1,8 @@
 :root {
     --body-BackgroundColor: #f4f4f9;
     --btn-primary: #5cabff;
+    --btn-secondry: #ffeeee;
+    --btn-third: #b37474;
 }
 
 * {
@@ -30,12 +32,12 @@ h1 {
     width: 75%;
     padding: 10px;
     margin-right: 10px;
-    border: 2px solid #ddd;
+    border: 1px solid #ddd;
     border-radius: 10px;
 }
 
 #addTodo {
-    padding: 10px 20px;
+    padding: 12px 20px;
     background-color: var(--btn-primary);
     border: none;
     border-radius: 10px;
@@ -57,4 +59,17 @@ li:hover {
 }
 li:last-child {
     border-bottom: none;
+}
+
+.filterBtn {
+    margin: 5px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    background-color: var(--btn-secondry);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.filterBtn:hover {
+    background-color: var(--btn-third);
 }
