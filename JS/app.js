@@ -16,6 +16,7 @@ function addTodoToLocalStorage(todoText) {
         todoTmp.push(todoText);
         localStorage.setItem("todos", JSON.stringify({todoList: todoTmp}));
         document.getElementById("todoInput").value = "";
+        addTaskToHTML(todoText);
     } else {
         alert("This task is already present in task list please add another task!!")
     }
@@ -29,9 +30,26 @@ function duplicateChecker (text,arr) {
     }
 }
 
+function addTaskToHTML (todoText) {
+    const todoList = document.getElementById("taskList");
+    const task = document.createElement("li");
+    task.textContent = todoText;
+    todoList.appendChild(task);
+}
+
+function addOldTask () {
+    let arr = loadTodos().todoList;
+    if (arr.length > 0) {
+        for (const arrElement of arr) {
+            addTaskToHTML(arrElement);
+        }
+    }
+}
+
 
 document.addEventListener("DOMContentLoaded", function() {
     loadTodos();
+    addOldTask();
     const todoInput = document.getElementById("todoInput");
     const submitButton = document.getElementById("addTodo");
 
@@ -42,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             addTodoToLocalStorage(todoText);
         }
-
     })
 
     todoInput.addEventListener("change", (event) => {
