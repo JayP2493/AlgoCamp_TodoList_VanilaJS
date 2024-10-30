@@ -10,9 +10,14 @@ function loadTodos () {
 
     const todos = JSON.parse(localStorage.getItem("todos"));
     console.log(todos);
-
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+    const todoInput = document.getElementById("todoInput");
+
+    todoInput.addEventListener("change", () => {
+        console.log("Something Changed")
+    })
+
     loadTodos();
 })
