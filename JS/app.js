@@ -11,12 +11,22 @@ function loadTodos () {
 }
 
 function addTodoToLocalStorage(todoText) {
-    const todos = loadTodos().todoList;
-    if (!(todos.length !== 0 && todos[todos.length-1] !== todoText)) {
-        todos.push(todoText);
-        localStorage.setItem("todos", JSON.stringify(todos));
+    const todoTmp = loadTodos().todoList;
+    if ((!(todoTmp.length !== 0 && todoTmp[todoTmp.length-1] === todoText)) && !duplicateChecker(todoText,todoTmp)) {
+        todoTmp.push(todoText);
+        localStorage.setItem("todos", JSON.stringify({todoList: todoTmp}));
+        document.getElementById("todoInput").value = "";
+    } else {
+        alert("This task is already present in task list please add another task!!")
     }
-    console.log(todos);
+}
+
+function duplicateChecker (text,arr) {
+    for (const textElement of arr) {
+        if (textElement === text) {
+            return true;
+        }
+    }
 }
 
 
@@ -38,6 +48,5 @@ document.addEventListener("DOMContentLoaded", function() {
     todoInput.addEventListener("change", (event) => {
         const todoText = event.target.value;
         event.target.value = todoText.trim();
-        console.log(event.target.value);
     })
 })
