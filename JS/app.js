@@ -3,7 +3,7 @@ function loadTodos () {
     const todosCheck = JSON.parse(localStorage.getItem("todos"));
 
     if (!todosCheck) {
-        console.log(todosCheck, "No value is there");
+        console.log(todosCheck, "No value is there, created new");
         localStorage.clear();
         localStorage.setItem("todos", JSON.stringify({todos: []}));
     }
